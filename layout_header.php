@@ -86,6 +86,12 @@
                 </a>
                 <?php endif; ?>
 
+                <?php if(hasPermission('view_shifts')): ?>
+                <a href="shifts.php" class="<?php echo (isset($activePage) && $activePage == 'shifts') ? 'active' : ''; ?>">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Shift Management
+                </a>
+                <?php endif; ?>
+
                 <?php if(hasPermission('manage_roles')): ?>
                 <a href="roles.php" class="<?php echo (isset($activePage) && $activePage == 'roles') ? 'active' : ''; ?>">
                     <i class="fa-solid fa-shield-halved"></i> Structure & Access
