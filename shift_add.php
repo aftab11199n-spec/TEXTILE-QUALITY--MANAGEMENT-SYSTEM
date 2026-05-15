@@ -34,9 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // UPDATE
         $id = intval($_POST['shift_id']);
         $stmt = $conn->prepare("UPDATE shifts SET shift_name=?, shift_type=?, start_time=?, end_time=?, department=?, machine_ids=?, supervisor_id=?, status=? WHERE id=?");
-        $stmt->bind_param("ssssssiis", $shift_name, $shift_type, $start_time, $end_time, $department, $machine_ids, $supervisor_id, $status);
-        // Fix: bind 9 params
-        $stmt = $conn->prepare("UPDATE shifts SET shift_name=?, shift_type=?, start_time=?, end_time=?, department=?, machine_ids=?, supervisor_id=?, status=? WHERE id=?");
         $stmt->bind_param("ssssssisi", $shift_name, $shift_type, $start_time, $end_time, $department, $machine_ids, $supervisor_id, $status, $id);
         if ($stmt->execute()) {
             logAction($conn, $_SESSION['user_id'], 'Shift Updated', "Updated shift: $shift_name");
